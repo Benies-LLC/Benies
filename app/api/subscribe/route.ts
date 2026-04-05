@@ -11,28 +11,32 @@ export async function POST(req: NextRequest) {
     const apiKey = process.env.KIT_API_KEY
     const formId = '9287136'
 
+    // Using Kit/ConvertKit v3 API which works on all plans
     const response = await fetch(
-      `https://api.kit.com/v4/forms/${formId}/subscribers`,
+      `https://api.convertkit.com/v3/forms/${formId}/subscribe`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Kit-Api-Key': apiKey || '',
         },
         body: JSON.stringify({
-          email_address: email,
-          ...(name ? { fields: { first_name: name } } : {}),
+          api_key: apiKey,
+          email: email,
+          first_name: name || '',
         }),
       }
     )
 
+    const data = await response.json()
+
     if (!response.ok) {
-      const err = await response.text()
-      console.error('Kit API error:', err)
-      return NextResponse.json({ success: true, kitError: err })
+      console.error('Kit API error:', JSON.stringify(data))
+      return NextResponse.json({ success: true, kitError: data })
     }
 
+    console.log('Kit subscription success:', data?.subscription?.id)
     return NextResponse.json({ success: true })
+
   } catch (err) {
     console.error('Subscribe error:', err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
