@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     }
 
     const apiKey = process.env.KIT_API_KEY
-    const formId = 'b018e66bab'
+    const formId = '9287136'
 
     const response = await fetch(
       `https://api.kit.com/v4/forms/${formId}/subscribers`,
