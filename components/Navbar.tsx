@@ -91,9 +91,7 @@ export default function Navbar({ onOpenWaitlist }: Props) {
             </button>
           ))}
           <button
-            onClick={() => { setMobileOpen(false); onOpenWaitlist() }}
-            className="mt-3 w-full rounded-xl py-3 text-sm font-bold text-white"
-            style={{ backgroundColor: '#0076BC' }}
+            onClick={() => { setMobileOpen(false); onOpenWaitlist?.() }}
           >
             Get Early Access
           </button>
