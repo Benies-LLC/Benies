@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 import BeniesLogo from './BeniesLogo'
 
@@ -48,13 +47,14 @@ export default function Navbar() {
               {l.label}
             </button>
           ))}
-          <button
-            onClick={() => scrollTo('#cta')}
-            className="rounded-xl bg-blue-primary px-5 py-2.5 text-sm font-bold text-white transition hover:bg-blue-dark"
+          <a
+            data-formkit-toggle="b018e66bab"
+            href="https://benies.kit.com/b018e66bab"
+            className="rounded-xl px-5 py-2.5 text-sm font-bold text-white transition hover:opacity-90"
             style={{ backgroundColor: '#0076BC' }}
           >
             Get Early Access
-          </button>
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -87,13 +87,14 @@ export default function Navbar() {
               {l.label}
             </button>
           ))}
-          <button
-            onClick={() => scrollTo('#cta')}
-            className="mt-3 w-full rounded-xl bg-blue-primary py-3 text-sm font-bold text-white"
+          <a
+            data-formkit-toggle="b018e66bab"
+            href="https://benies.kit.com/b018e66bab"
+            className="mt-3 block w-full rounded-xl py-3 text-center text-sm font-bold text-white"
             style={{ backgroundColor: '#0076BC' }}
           >
             Get Early Access
-          </button>
+          </a>
         </div>
       )}
     </nav>
