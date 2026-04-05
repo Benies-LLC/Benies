@@ -31,6 +31,18 @@ export default function WaitlistModal({ isOpen, onClose }: Props) {
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
+  // Reset form when closed
+  useEffect(() => {
+    if (!isOpen) {
+      setTimeout(() => {
+        setEmail('')
+        setName('')
+        setStatus('idle')
+        setErrorMsg('')
+      }, 300)
+    }
+  }, [isOpen])
+
   if (!isOpen) return null
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -85,12 +97,13 @@ export default function WaitlistModal({ isOpen, onClose }: Props) {
           }}
         />
 
-        {/* Close button */}
+        {/* Close button — always visible, high z-index */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 transition"
+          className="absolute right-4 top-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md transition hover:bg-gray-100"
+          aria-label="Close"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.5" strokeLinecap="round">
             <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
@@ -114,7 +127,7 @@ export default function WaitlistModal({ isOpen, onClose }: Props) {
                 className="mt-6 w-full rounded-xl py-3 text-sm font-bold text-white transition hover:opacity-90"
                 style={{ background: '#0076BC' }}
               >
-                Done
+                Back to Benies
               </button>
             </div>
           ) : (
