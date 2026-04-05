@@ -2,13 +2,17 @@
 import { useState, useEffect } from 'react'
 import BeniesLogo from './BeniesLogo'
 
+interface Props {
+  onOpenWaitlist: () => void
+}
+
 const navLinks = [
   { label: 'How it works', href: '#how-it-works' },
   { label: 'Features',     href: '#features'     },
   { label: 'FAQ',          href: '#faq'           },
 ]
 
-export default function Navbar() {
+export default function Navbar({ onOpenWaitlist }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled,   setScrolled]   = useState(false)
 
@@ -47,14 +51,13 @@ export default function Navbar() {
               {l.label}
             </button>
           ))}
-          <a
-            data-formkit-toggle="b018e66bab"
-            href="https://benies.kit.com/b018e66bab"
+          <button
+            onClick={onOpenWaitlist}
             className="rounded-xl px-5 py-2.5 text-sm font-bold text-white transition hover:opacity-90"
             style={{ backgroundColor: '#0076BC' }}
           >
             Get Early Access
-          </a>
+          </button>
         </div>
 
         {/* Mobile toggle */}
@@ -87,14 +90,13 @@ export default function Navbar() {
               {l.label}
             </button>
           ))}
-          <a
-            data-formkit-toggle="b018e66bab"
-            href="https://benies.kit.com/b018e66bab"
-            className="mt-3 block w-full rounded-xl py-3 text-center text-sm font-bold text-white"
+          <button
+            onClick={() => { setMobileOpen(false); onOpenWaitlist() }}
+            className="mt-3 w-full rounded-xl py-3 text-sm font-bold text-white"
             style={{ backgroundColor: '#0076BC' }}
           >
             Get Early Access
-          </a>
+          </button>
         </div>
       )}
     </nav>
