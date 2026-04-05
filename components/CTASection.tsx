@@ -1,4 +1,8 @@
-export default function CTASection() {
+interface Props {
+  onOpenWaitlist: () => void
+}
+
+export default function CTASection({ onOpenWaitlist }: Props) {
   return (
     <section id="cta" className="py-24" style={{ background: '#1F2D54' }}>
       <div className="mx-auto max-w-xl px-6 text-center">
@@ -8,22 +12,10 @@ export default function CTASection() {
           className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl"
           style={{ background: '#0076BC', position: 'relative' }}
         >
-          <span
-            className="text-3xl font-bold text-white"
-            style={{ fontFamily: 'DM Sans, sans-serif' }}
-          >
-            b
-          </span>
+          <span className="text-3xl font-bold text-white" style={{ fontFamily: 'DM Sans, sans-serif' }}>b</span>
           <span
             className="absolute rounded-full"
-            style={{
-              background: '#00BCD8',
-              width: 10,
-              height: 4,
-              top: 10,
-              right: 8,
-              borderRadius: 3,
-            }}
+            style={{ background: '#00BCD8', width: 10, height: 4, top: 10, right: 8, borderRadius: 3 }}
           />
         </div>
 
@@ -53,7 +45,7 @@ export default function CTASection() {
           ))}
         </div>
 
-        {/* Kit CTA button */}
+        {/* CTA box */}
         <div
           className="rounded-2xl p-6"
           style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
@@ -61,14 +53,13 @@ export default function CTASection() {
           <p className="mb-4 text-sm font-medium" style={{ color: 'rgba(255,255,255,0.7)' }}>
             The average American leaves $4,000 a year on the table. Be first to stop it.
           </p>
-          <a
-            data-formkit-toggle="b018e66bab"
-            href="https://benies.kit.com/b018e66bab"
+          <button
+            onClick={onOpenWaitlist}
             className="inline-flex items-center justify-center rounded-xl px-8 py-3.5 text-sm font-bold text-white transition hover:opacity-90 active:scale-95"
             style={{ background: '#0076BC' }}
           >
             Get Early Access
-          </a>
+          </button>
           <p className="mt-3 text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
             No spam. No selling your data. Unsubscribe anytime.
           </p>
